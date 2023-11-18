@@ -41,6 +41,7 @@ function table(string $title, string $desc, array $columns, mysqli_result $data,
                     </th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php
                 $rowNumber = 0;
@@ -54,10 +55,12 @@ function table(string $title, string $desc, array $columns, mysqli_result $data,
                                 </td>
                             <?php } ?>
                             <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-600 hover:underline">Editar</a>
+                                <a href="exemplo-excluir.php?id=xxx" class="font-medium text-blue-600 hover:underline">
+                                    Editar
+                                </a>
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <?php modalDelete($tableName, $row[$columnName]) ?>
+                                <?php modalDelete($tableName, reset($row)) ?>
                             </td>
                         </tr>
                 <?php

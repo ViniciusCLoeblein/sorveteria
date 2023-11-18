@@ -8,23 +8,7 @@ function deleteRow(string $nameTable, string $value)
 
     $query = "DELETE FROM {$nameTable} WHERE {$pk} = '{$value}'";
 
-    
-    header('Content-Type: application/json');
-    if (mysqli_query($conn, $query)) {
-        mysqli_close($conn);
-        return 'Registro excluído com sucesso.';
-    } else {
-        mysqli_close($conn);
-        return 'Erro ao excluir o registro: ' . mysqli_error($conn);
-    }
-}
+    mysqli_query($conn, $query);
 
-function getPK(string $nameTable)
-{
-    $pk = '';
-    if ($nameTable == 'usuario') {
-        $pk = 'codUsuario';
-    }
-
-    return $pk;
+    mysqli_close($conn);
 }

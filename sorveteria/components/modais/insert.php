@@ -28,6 +28,7 @@ function modalInserir(string $tableName, array $inputs, array $selects = [])
                     <div class="grid gap-4 mb-4 grid-cols-2">
 
                         <!-- inputs -->
+                        <input type="hidden" name="type" value="insert">
                         <?php foreach ($inputs as $input) : ?>
                             <div class="col-span-1">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">
@@ -66,22 +67,47 @@ function modalInserir(string $tableName, array $inputs, array $selects = [])
     </div>
 
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" &&  $_POST["type"] == "insert") {
         $values = [];
-        if ($tableName == 'usuario') {
-            $nome = $_POST["Nome"];
-            $sobrenome = $_POST["Sobrenome"];
-            $cpf = $_POST["CPF"];
-            $dtaNasc = $_POST["dtaNascimento"];
-            $indAdm = $_POST["Adminstrador"];
-            $pswd = new DateTime($_POST["dtaNascimento"]);
 
-            $values = [$nome, $sobrenome, $cpf, $dtaNasc, $indAdm, $pswd->format('d/m/Y')];
+        switch ($tableName) {
+            case 'usuario':
+                $nome = $_POST["Nome"];
+                $sobrenome = $_POST["Sobrenome"];
+                $cpf = $_POST["CPF"];
+                $dtaNasc = $_POST["dtaNascimento"];
+                $indAdm = $_POST["Adminstrador"];
+                $pswd = new DateTime($_POST["dtaNascimento"]);
+
+                $values = [$nome, $sobrenome, $cpf, $dtaNasc, $indAdm, $pswd->format('d/m/Y')];
+                break;
+            case 'categoria':
+                $desc = $_POST["Descrição"];
+                $values = [$desc];
+                break;
+            case 'produto':
+                $desc = $_POST["Descrição"];
+                $valor = $_POST["Valor"];
+                $estoque = $_POST["Estoque"];
+                $estoqueMinino = $_POST["Estoque_Minino"];
+                $fornecedor = $_POST["Fornecedor"];
+                $categoria = $_POST["Categoria"];
+                $values = [$desc, $valor, $estoque, $estoqueMinino, $fornecedor, $categoria];
+                break;
+            case 'fornecedor':
+                $desc = $_POST["Descrição"];
+                $numContato = $_POST["N_contato"];
+                $cnpj = $_POST["CNPJ"];
+                $estado = $_POST["Estado"];
+                $values = [$desc, $numContato, $cnpj, $estado];
+                break;
+            default:
+                break;
         }
 
         insertTable($tableName, $values);
 
-        echo "<script>window.location.href = '/sorveteria//cadastros/usuarios/';</script>";
+        echo "<script>window.location.href = window.location.pathname;</script>";
     }
 }
 ?>

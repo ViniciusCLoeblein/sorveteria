@@ -29,7 +29,7 @@
     $tableName = 'fornecedor';
     $title = 'Fornecedores';
     $desc = 'Navegue por uma lista de fornecedores projetados para ajudá-lo a trabalhar e manter-se organizado.';
-    $columns = ['Fornecedor', 'Descrição', 'Numero contato', 'cnpj'];
+    $columns = ['Fornecedor', 'Descrição', 'Numero contato', 'cnpj', 'estado'];
     $data = getTable(
         $tableName,
         [

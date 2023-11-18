@@ -21,3 +21,28 @@ function logout()
 {
     setcookie('usuario', '', time() - (86400 * 15), "/");
 }
+
+
+function getPK(string $nameTable)
+{
+    $columnName  = '';
+
+    switch ($nameTable) {
+        case 'usuario':
+            $columnName = 'codUsuario';
+            break;
+        case 'categoria':
+            $columnName = 'codCategoria';
+            break;
+        case 'produto':
+            $columnName = 'codProduto';
+            break;
+        case 'fornecedor':
+            $columnName = 'codFornecedor';
+            break;
+        default:
+            break;
+    }
+
+    return $columnName;
+}

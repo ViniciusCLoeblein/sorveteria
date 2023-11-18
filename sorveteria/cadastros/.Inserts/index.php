@@ -22,14 +22,13 @@ function insertTable(string $nameTable, array $values)
 function getMaxSequence(string $nameTable)
 {
     $max = 0;
+    $pk = getPK($nameTable);
 
-    if ($nameTable == 'usuario') {
-        $queryResult = getTable($nameTable, ['codUsuario'], ["MAX(codUsuario + 1) AS 'result'"]);
+    $queryResult = getTable($nameTable, [$pk], ["COALESCE(MAX($pk) + 1, 1) AS 'result'"]);
 
-        if ($queryResult) {
-            $row = mysqli_fetch_assoc($queryResult);
-            $max = $row['result'];
-        }
+    if ($queryResult) {
+        $row = mysqli_fetch_assoc($queryResult);
+        $max = $row['result'];
     }
 
     return $max;
