@@ -6,11 +6,17 @@ function deleteRow(string $nameTable, string $value)
     $conn = conectaBD();
     $pk = getPK($nameTable);
 
-    $query = "DELETE FROM {$nameTable} WHERE {$pk} = {'$value'}";
+    $query = "DELETE FROM {$nameTable} WHERE {$pk} = '{$value}'";
 
-    mysqli_query($conn, $query);
-
-    mysqli_close($conn);
+    
+    header('Content-Type: application/json');
+    if (mysqli_query($conn, $query)) {
+        mysqli_close($conn);
+        return 'Registro excluído com sucesso.';
+    } else {
+        mysqli_close($conn);
+        return 'Erro ao excluir o registro: ' . mysqli_error($conn);
+    }
 }
 
 function getPK(string $nameTable)
