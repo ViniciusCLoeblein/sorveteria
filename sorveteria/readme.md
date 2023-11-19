@@ -61,13 +61,48 @@ ALTER TABLE Venda ADD CONSTRAINT fk_codUsuario
     FOREIGN KEY (codUsuario)
     REFERENCES Usuario (codUsuario)
     ON DELETE CASCADE;
+
+ALTER TABLE ItemVenda ADD CONSTRAINT PK_ItemVenda 
+    PRIMARY KEY (codProduto, vendaSeq);
  
 ALTER TABLE ItemVenda ADD CONSTRAINT fk_codProduto
     FOREIGN KEY (codProduto)
-    REFERENCES Produto (codProduto)
-    ON DELETE RESTRICT;
+    REFERENCES Produto (codProduto);
  
 ALTER TABLE ItemVenda ADD CONSTRAINT fk_vendaSeq
     FOREIGN KEY (vendaSeq)
-    REFERENCES Venda (seq)
-    ON DELETE SET NULL;
+    REFERENCES Venda (seq);
+
+
+
+--Inserts
+
+
+-- Inserir dados na tabela Categoria
+INSERT INTO Categoria (codCategoria, desCategoria)
+VALUES
+    (1, 'Sorvetes'),
+    (2, 'Coberturas'),
+    (3, 'Utensílios');
+
+-- Inserir dados na tabela Fornecedor
+INSERT INTO Fornecedor (codFornecedor, desFornecedor, cnpj, numContato, estado)
+VALUES
+    (1, 'Fornecedor Frutas Geladas', '12345678901234', '(51) 98765-4321', 'RS'),
+    (2, 'Chocolate & Cia', '98765432109876', '(54) 12345-6789', 'RS'),
+    (3, 'Especialidades Geladas', '11122233344455', '(55) 67890-1234', 'RS');
+
+-- Inserir dados na tabela Produto
+INSERT INTO Produto (codProduto, desProduto, valor, estoque, estoqueMinimo, codFornecedor, codCategoria)
+VALUES
+    (103, 'Sorvete de Chocolate', 5.99, 80, 15, 2, 1),
+    (104, 'Calda de Chocolate', 3.50, 50, 10, 2, 2),
+    (105, 'Cones para Sorvete (Pacote com 50)', 12.99, 30, 5, 3, 3),
+    (106, 'Granulado Colorido', 2.99, 80, 15, 2, 2);
+
+-- Inserir dados na tabela Usuario
+INSERT INTO Usuario (codUsuario, nome, sobrenome, CPF, dtaNascimento, indAdm, senha)
+VALUES
+    (1, 'Flavia', 'Roseane', '12197755412', '1990-05-15', 1, 'senha123'),
+    (2, 'Vinicius', 'do Carmo', '05253464069', '1988-12-10', 0, 'senha123'),
+    (3, 'Felipe', 'Oliveira', '11122233344', '1995-08-22', 0, 'senha123');

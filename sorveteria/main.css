@@ -1,0 +1,28 @@
+::-webkit-scrollbar {
+    display: block;
+    width: 4px;
+    height: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 3px;
+    height: 3px;
+    background-color: rgb(187, 187, 187);
+    border-radius: 5px;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 64px);
+    background-image: url('assets/capaLogin.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    opacity: 0.75;
+}

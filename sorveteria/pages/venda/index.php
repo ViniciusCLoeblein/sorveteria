@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Venda </title>
 
+    <link rel="stylesheet" href="../../main.css">
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,13 +26,19 @@
     <?php
     include_once("../../components/navbar.php");
     include_once("../../components/card/index.php");
-    include_once("../../utils/index.php");
     include_once("../.Selects/index.php");
+
+    $produtos = getProduto();
 
     navBar();
     ?>
-    <div class="page p-6">
-        <?php card(); ?>
+    <div class="page h-full p-6">
+        <?php card($produtos); ?>
+        <div class="fixed bottom-0 right-0 m-6">
+            <button class="bg-blue-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full text-2xl">
+                Ver carrinho
+            </button>
+        </div>
     </div>
 </body>
 
