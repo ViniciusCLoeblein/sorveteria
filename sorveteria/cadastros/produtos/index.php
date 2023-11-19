@@ -39,6 +39,7 @@
         'Categoria'
     ];
     $data = getProduto();
+
     $modalInputs = [
         [
             'label' => 'Descrição',
@@ -69,23 +70,27 @@
     $modalSelects = [
         [
             'label' => 'Fornecedor',
-            'options' => [
-                [
-                    'value' => '1',
-                    'placeholder' => 'Fornecedor 1'
-                ]
-            ],
+            'options' => []
         ],
         [
             'label' => 'Categoria',
-            'options' => [
-                [
-                    'value' => '1',
-                    'placeholder' => 'Categoria 1'
-                ]
-            ],
+            'options' => []
         ]
     ];
+
+    foreach (getTable('fornecedor') as $fornecedor) {
+        $modalSelects[0]['options'][] = [
+            'value' => $fornecedor['codFornecedor'],
+            'placeholder' => $fornecedor['desFornecedor']
+        ];
+    }
+
+    foreach (getTable('categoria') as $categoria) {
+        $modalSelects[1]['options'][] = [
+            'value' => $categoria['codCategoria'],
+            'placeholder' => $categoria['desCategoria']
+        ];
+    }
 
 
     navBar();

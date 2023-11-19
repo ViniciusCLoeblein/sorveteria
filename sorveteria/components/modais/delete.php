@@ -8,7 +8,7 @@ function modalDelete(string $nameTable, string $value)
         <input type="hidden" name="type" value="delete">
         <input type="hidden" name="nameTable" value="<?= $nameTable ?>">
         <input type="hidden" name="value" value="<?= $value ?>">
-        <button type="submit" type="submit" class="font-medium text-red-600 hover:underline cursor-pointer" data-modal-target="popup-modal" data-modal-toggle="popup-modal">
+        <button type="submit" class="font-medium text-red-600 hover:underline cursor-pointer">
             Excluir
         </button>
     </form>

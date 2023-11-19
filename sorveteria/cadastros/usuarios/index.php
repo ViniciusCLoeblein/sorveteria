@@ -31,13 +31,14 @@
     $tableName = 'usuario';
     $title = 'Usuários';
     $desc = 'Navegue por uma lista de usuários projetados para ajudá-lo a trabalhar e manter-se organizado.';
-    $columns = ['Usuário', 'nome', 'CPF', 'Data nascimento', 'Administrador'];
+    $columns = ['Usuário', 'nome', 'sobrenome', 'CPF', 'Data nascimento', 'Administrador'];
     $data = getTable(
         $tableName,
         [
             '
              codUsuario as "Usuário",
              nome,
+             sobrenome,
              CPF,
              DATE_FORMAT(dtaNascimento, "%d/%m/%Y") as "Data nascimento",
              indAdm as "Administrador"

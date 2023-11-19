@@ -9,7 +9,7 @@ function getTable(string $nameTable, array $fields = ['*'], array $functions = [
     $functionsString = implode(', ', $functions);
     $functionsClause = !empty($functionsString) ? ", {$functionsString}" : '';
 
-    $query = "SELECT {$fieldsString}{$functionsClause} FROM {$nameTable}";
+    $query = "SELECT {$fieldsString}{$functionsClause} FROM {$nameTable} ORDER BY (1)";
 
     $result = mysqli_query($conn, $query);
 
@@ -34,6 +34,7 @@ function getProduto()
                     on a.codFornecedor = b.codFornecedor
                 inner join categoria c
                     on a.codCategoria = c.codCategoria
+                ORDER BY (1)
               ";
 
     $result = mysqli_query($conn, $query);

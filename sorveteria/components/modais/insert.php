@@ -44,7 +44,7 @@ function modalInserir(string $tableName, array $inputs, array $selects = [])
                                 <label class="block mb-2 text-sm font-medium text-gray-900">
                                     <?= $select['label'] ?>
                                 </label>
-                                <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <select name="<?= $select['label'] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                     <?php foreach ($select['options'] as $option) : ?>
                                         <option value="<?= $option['value'] ?>">
                                             <?= $option['placeholder'] ?>
@@ -90,6 +90,7 @@ function modalInserir(string $tableName, array $inputs, array $selects = [])
                 $valor = $_POST["Valor"];
                 $estoque = $_POST["Estoque"];
                 $estoqueMinino = $_POST["Estoque_Minino"];
+                echo json_encode($_POST);
                 $fornecedor = $_POST["Fornecedor"];
                 $categoria = $_POST["Categoria"];
                 $values = [$desc, $valor, $estoque, $estoqueMinino, $fornecedor, $categoria];
