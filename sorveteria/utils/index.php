@@ -32,13 +32,13 @@ function getPK(string $nameTable, bool $apelido = false)
                 $columnName = 'Usuário';
                 break;
             case 'categoria':
-                $columnName = 'codCategoria';
+                $columnName = 'Categoria';
                 break;
             case 'produto':
-                $columnName = 'codProduto';
+                $columnName = 'Produto';
                 break;
             case 'fornecedor':
-                $columnName = 'codFornecedor';
+                $columnName = 'Fornecedor';
                 break;
             default:
                 break;

@@ -1,7 +1,7 @@
 <?php
 include_once "modais/insert.php";
 include_once "modais/delete.php";
-include_once "../../cadastros/.Updates/index.php";
+include_once "../../pages/.Updates/index.php";
 
 function table(string $title, string $desc, array $columns, mysqli_result $data, string $tableName, array $inputsModal, array $selectModal = [])
 {
@@ -83,7 +83,7 @@ function table(string $title, string $desc, array $columns, mysqli_result $data,
 
                         <?php } else { ?>
                             <a href="?edit=1&id=<?php echo reset($row) ?>" class="font-medium text-yellow-600 hover:underline cursor-pointer" type="button">
-                                Modo Edição
+                                Editar
                             </a>
                             </td>
                             <td class="px-6 py-4 text-right">

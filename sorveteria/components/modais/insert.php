@@ -1,5 +1,5 @@
 <?php
-include_once("../../cadastros/.Inserts/index.php");
+include_once("../../pages/.Inserts/index.php");
 
 
 function modalInserir(string $tableName, array $inputs, array $selects = [])

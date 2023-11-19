@@ -1,5 +1,5 @@
 <?php
-include_once "../../cadastros/.Deletes/index.php";
+include_once "../../pages/.Deletes/index.php";
 
 function modalDelete(string $nameTable, string $value)
 {

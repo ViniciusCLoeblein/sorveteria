@@ -1,7 +1,6 @@
 <?php
 include_once("../../utils/index.php");
 
-echo json_encode($_POST);
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["type"] == "update") {
     $conn = conectaBD();
     $tableName = $_POST["tableName"];
@@ -22,13 +21,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["type"] == "update") {
                       ";
             break;
         case 'categoria':
-            $columnName = 'codCategoria';
+            $query = "UPDATE categoria
+                      SET desCategoria = '{$_POST["Descrição"]}'
+                      WHERE codCategoria = '{$_POST["id"]}'
+                    ";
             break;
         case 'produto':
-            $columnName = 'codProduto';
+            $query = "UPDATE produto
+                      SET desProduto = '{$_POST["Descrição"]}',
+                          valor = '{$_POST["Valor"]}',
+                          estoque = '{$_POST["Estoque"]}',
+                          estoqueMinimo = '{$_POST["Estoque_Minimo"]}',
+                          codFornecedor = '{$_POST["Fornecedor"]}',
+                          codCategoria = '{$_POST["Categoria"]}'
+                      WHERE codProduto = '{$_POST["id"]}'
+                    ";
             break;
         case 'fornecedor':
-            $columnName = 'codFornecedor';
+            $query = "UPDATE fornecedor
+                      SET desFornecedor = '{$_POST["Descrição"]}',
+                          cnpj = '{$_POST["cnpj"]}',
+                          numContato = '{$_POST["Numero_contato"]}',
+                          estado = '{$_POST["estado"]}'
+                      WHERE codFornecedor = '{$_POST["id"]}'
+                    ";
             break;
         default:
             break;
