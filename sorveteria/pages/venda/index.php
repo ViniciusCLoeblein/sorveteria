@@ -26,19 +26,17 @@
     <?php
     include_once("../../components/navbar.php");
     include_once("../../components/card/index.php");
+    include_once("../../components/modais/carrinho.php");
     include_once("../.Selects/index.php");
 
     $produtos = getProduto();
 
     navBar();
     ?>
+
     <div class="page h-full p-6">
         <?php card($produtos); ?>
-        <div class="fixed bottom-0 right-0 m-6">
-            <button class="bg-blue-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full text-2xl">
-                Ver carrinho
-            </button>
-        </div>
+        <?php modalCarrinho(); ?>
     </div>
 </body>
 

@@ -26,6 +26,7 @@ function getProduto()
                a.codProduto as 'Produto',
                a.desProduto as 'Descrição',
                CONCAT('R$ ', REPLACE(FORMAT(a.valor, 2), '.', ',')) as 'Valor',
+               a.valor as 'ValorD',
                a.estoque as 'Estoque',
                a.estoqueMinimo as 'Estoque Minimo',
                b.desFornecedor as 'Fornecedor',

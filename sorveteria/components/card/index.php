@@ -1,4 +1,5 @@
 <?php
+include_once "../../pages/.Inserts/index.php";
 
 function card(mysqli_result $produtos)
 {
@@ -6,7 +7,11 @@ function card(mysqli_result $produtos)
     <div class="flex flex-wrap -mx-4">
         <?php foreach ($produtos as $produto) { ?>
             <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 px-4 mb-8">
-                <div class="bg-white border border-gray-200 rounded-lg shadow">
+                <form method="POST" class="bg-white border border-gray-200 rounded-lg shadow">
+                    <input name="type" type="hidden" value="InsertCarrinho" />
+                    <input name="codProduto" type="hidden" value="<?= $produto["Produto"] ?>" />
+                    <input name="desProduto" type="hidden" value="<?= $produto["Descrição"] ?>" />
+                    <input name="valor" type="hidden" value="<?= $produto["ValorD"] ?>" />
                     <a href="#" class="cursor-default">
                         <?php if ($produto["Categoria"] == 'Sorvetes') { ?>
                             <img class="p-4 rounded-t-lg w-full h-80" src="https://cptstatic.s3.amazonaws.com/imagens/enviadas/materias/materia11042/slide/sorvetes1-cursos-cpt.jpg" alt="imagem do produto" />
@@ -26,12 +31,12 @@ function card(mysqli_result $produtos)
                             <span class="text-3xl font-bold text-gray-900">
                                 <?php echo $produto["Valor"] ?>
                             </span>
-                            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Add carrinho
-                            </a>
+                            </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         <?php } ?>
     </div>
