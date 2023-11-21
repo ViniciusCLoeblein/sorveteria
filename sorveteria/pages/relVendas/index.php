@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Venda </title>
-
-    <link rel="stylesheet" href="../../main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title> Relatorio de Vendas </title>
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,19 +24,29 @@
 <body>
     <?php
     include_once("../../components/navbar.php");
-    include_once("../../components/card/index.php");
-    include_once("../../components/modais/carrinho.php");
+    include_once("../../components/table.php");
     include_once("../.Selects/index.php");
 
-    $produtos = getProduto(true);
+    $tableName = 'venda';
+    $title = 'Relatorio Vendas';
+    $desc = 'Navegue por uma lista do relatorio de vendas projetados para ajudá-lo a trabalhar e manter-se organizado.';
+
+    $columns = ['numCupom', 'Data Venda', 'Produto', 'Qtd Vendidos', 'Vendedor', 'Valor Total'];
+    $data = getRelVendas();
+    $modalInputs = [
+        [
+            'label' => 'Descrição',
+            'type' => 'text',
+            'placeholder' => 'Insira a descrição da categoria',
+            'required' => true
+        ],
+    ];
 
     navBar();
+    table($title, $desc, $columns, $data, $tableName, $modalInputs);
+
     ?>
 
-    <div class="page h-full p-6">
-        <?php card($produtos); ?>
-        <?php modalCarrinho(); ?>
-    </div>
 </body>
 
 </html>

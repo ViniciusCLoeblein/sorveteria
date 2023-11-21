@@ -49,7 +49,7 @@
         ],
         [
             'label' => 'Valor',
-            'type' => 'number',
+            'type' => 'text',
             'placeholder' => 'Insira o valor',
             'required' => true
         ],

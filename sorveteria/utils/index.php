@@ -57,6 +57,9 @@ function getPK(string $nameTable, bool $apelido = false)
             case 'fornecedor':
                 $columnName = 'codFornecedor';
                 break;
+            case 'venda':
+                $columnName = 'seq';
+                break;
             default:
                 break;
         }

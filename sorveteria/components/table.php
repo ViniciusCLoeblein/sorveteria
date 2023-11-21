@@ -30,7 +30,11 @@ function table(string $title, string $desc, array $columns, mysqli_result $data,
                 <p class="mt-1 text-sm font-normal text-gray-500">
                     <?php echo $desc; ?>
                 </p>
-                <?php modalInserir($tableName, $inputsModal, $selectModal) ?>
+                <?php
+                if ($tableName !== 'venda') {
+                    modalInserir($tableName, $inputsModal, $selectModal);
+                }
+                ?>
             </caption>
 
             <thead class="bg-violet-100 text-xs text-gray-700">
@@ -39,11 +43,15 @@ function table(string $title, string $desc, array $columns, mysqli_result $data,
                         <th scope="col" class="px-6 py-3">
                             <?php echo $column; ?>
                         </th>
+                    <?php }
+                    if ($tableName !== 'venda') { ?>
+
+                        <th scope="col">
+                        </th>
                     <?php } ?>
                     <th scope="col">
                     </th>
-                    <th scope="col">
-                    </th>
+
                 </tr>
             </thead>
 
@@ -81,15 +89,19 @@ function table(string $title, string $desc, array $columns, mysqli_result $data,
                                     </form>
                             <td></td>
 
-                        <?php } else { ?>
-                            <a href="?edit=1&id=<?php echo reset($row) ?>" class="font-medium text-yellow-600 hover:underline cursor-pointer" type="button">
-                                Editar
-                            </a>
+                            <?php } else {
+                                    if ($tableName !== 'venda') { ?>
+                                <a href="?edit=1&id=<?php echo reset($row) ?>" class="font-medium text-yellow-600 hover:underline cursor-pointer" type="button">
+                                    Editar
+                                </a>
+                            <?php } ?>
                             </td>
-                            <td class="px-6 py-4 text-right">
-                                <?php modalDelete($tableName, reset($row)) ?>
-                            </td>
-                        <?php } ?>
+                            <?php if ($tableName !== 'venda') { ?>
+                                <td class="px-6 py-4 text-right">
+                                    <?php modalDelete($tableName, reset($row)) ?>
+                                </td>
+                        <?php }
+                                } ?>
                         </tr>
 
                 <?php

@@ -18,9 +18,11 @@ function getTable(string $nameTable, array $fields = ['*'], array $functions = [
     return $result;
 }
 
-function getProduto()
+function getProduto($adicionarFiltro = false)
 {
     $conn = conectaBD();
+
+    $filtro = ($adicionarFiltro) ? "WHERE a.estoque > 0" : "";
 
     $query = "SELECT
                a.codProduto as 'Produto',
@@ -31,12 +33,35 @@ function getProduto()
                a.estoqueMinimo as 'Estoque Minimo',
                b.desFornecedor as 'Fornecedor',
                c.desCategoria as 'Categoria'
-                FROM produto a inner join fornecedor b
-                    on a.codFornecedor = b.codFornecedor
-                inner join categoria c
-                    on a.codCategoria = c.codCategoria
-                ORDER BY (1)
-              ";
+               FROM produto a
+               INNER JOIN fornecedor b ON a.codFornecedor = b.codFornecedor
+               INNER JOIN categoria c ON a.codCategoria = c.codCategoria
+               $filtro
+               ORDER BY (1)";
+
+    $result = mysqli_query($conn, $query);
+
+    mysqli_close($conn);
+
+    return $result;
+}
+
+function getRelVendas()
+{
+    $conn = conectaBD();
+
+    $query = "SELECT
+               a.numCupom as 'numCupom',
+               DATE_FORMAT(a.dtaVenda, '%d/%m/%Y') as 'Data Venda',
+               d.desProduto as 'Produto',
+               CONCAT('R$ ', REPLACE(FORMAT(a.valorTotal, 2), '.', ',')) as 'Valor Total',
+               c.qtdProduto as 'Qtd Vendidos',
+               b.nome as 'Vendedor'
+               from Venda a
+               INNER JOIN Usuario b on a.codUsuario = b.codUsuario
+               INNER JOIN ItemVenda c on a.seq = c.vendaSeq
+               INNER JOIN Produto d on c.codProduto = d.codProduto
+               ORDER BY(1) DESC";
 
     $result = mysqli_query($conn, $query);
 
